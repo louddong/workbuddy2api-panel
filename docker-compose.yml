@@ -1,6 +1,9 @@
 services:
   wb2api:
-    build: .
+    # 镜像由 fork 的 GHCR Actions 自动构建（push 到 main 触发，多架构 amd64/arm64）：
+    #   更新：docker compose pull && docker compose up -d
+    #   想改代码本地构建：把这行换回 build: . 再 docker compose build
+    image: ghcr.io/louddong/workbuddy2api-panel:latest
     container_name: workbuddy2api
     restart: unless-stopped
     # 容器默认以 app 用户（uid 10001）运行。宿主机挂载目录属主不同会导致
